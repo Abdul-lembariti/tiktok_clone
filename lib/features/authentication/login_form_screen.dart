@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
+import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
 // ignore: must_be_immutable
 class LoginFormScreen extends StatelessWidget {
@@ -9,10 +10,15 @@ class LoginFormScreen extends StatelessWidget {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _onSubmitTap() {
+  void _onSubmitTap(BuildContext context) {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const InterestScreen(),
+          ),
+        );
       }
     }
   }
@@ -50,6 +56,9 @@ class LoginFormScreen extends StatelessWidget {
                     ),
                     cursorColor: Theme.of(context).primaryColor,
                     validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return 'Please write your email';
+                      }
                       return null;
                     },
                     onSaved: (newValue) {
@@ -84,7 +93,7 @@ class LoginFormScreen extends StatelessWidget {
                 ),
                 Gaps.v28,
                 GestureDetector(
-                  onTap: _onSubmitTap,
+                  onTap: () => _onSubmitTap(context),
                   child: FormButton(
                     disabled: false,
                     text: 'Log In',
