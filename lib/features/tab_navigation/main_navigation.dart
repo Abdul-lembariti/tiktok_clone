@@ -33,7 +33,16 @@ class _MainNavigationState extends State<MainNavigation> {
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
-      tabBar: tabBar,
+      tabBar: CupertinoTabBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.house), label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.search), label: 'Search'),
+          BottomNavigationBarItem(
+              icon: Icon(CupertinoIcons.settings), label: 'Settings')
+        ],
+      ),
       tabBuilder: (context, index) => screens[index],
     );
   }
