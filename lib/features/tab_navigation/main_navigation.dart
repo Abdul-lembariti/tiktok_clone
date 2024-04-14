@@ -24,33 +24,39 @@ class _MainNavigationState extends State<MainNavigation> {
     const Center(
       child: Text('search'),
     ),
+    const Center(
+      child: Text('settings'),
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
-        // selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.black26,
-        items: const [
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.house),
-            label: 'Home',
-            tooltip: 'navigator to home',
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-            label: 'Search',
-            tooltip: 'what are u',
-            backgroundColor: Colors.purple,
-          ),
-        ],
-      ),
-    );
+        body: screens[_selectedIndex],
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: _onTap,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          destinations: const [
+            NavigationDestination(
+              icon: FaIcon(
+                FontAwesomeIcons.house,
+                color: Colors.teal,
+              ),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: FaIcon(
+                FontAwesomeIcons.magnifyingGlass,
+                color: Colors.amber,
+              ),
+              label: 'Search',
+            ),
+            NavigationDestination(
+              icon: FaIcon(FontAwesomeIcons.gears),
+              label: 'Setting',
+            ),
+          ],
+        ));
   }
 }
