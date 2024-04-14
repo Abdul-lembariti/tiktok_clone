@@ -30,10 +30,13 @@ class _BirthdayState extends State<Birthday> {
   }
 
   void _onEmail() {
-    Navigator.of(context).push(
+    Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) => const InterestScreen(),
       ),
+      (route) {
+        return false;
+      },
     );
   }
 
@@ -96,7 +99,10 @@ class _BirthdayState extends State<Birthday> {
             Gaps.v20,
             GestureDetector(
               onTap: _onEmail,
-              child:  FormButton(disabled: false, text: 'Next',),
+              child: FormButton(
+                disabled: false,
+                text: 'Next',
+              ),
             )
           ],
         ),
