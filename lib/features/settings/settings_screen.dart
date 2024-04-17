@@ -2,8 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool _notification = false;
+
+  void _onNotification(bool? newValue) {
+    if (newValue == null) return;
+    setState(() {
+      _notification = newValue;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +27,20 @@ class SettingsScreen extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          SwitchListTile.adaptive(
+            value: _notification,
+            onChanged: _onNotification,
+            title: const Text('Enable notification'),
+            subtitle: const Text('enable sound not'),
+          ),
+          CheckboxListTile(
+            value: _notification,
+            onChanged: _onNotification,
+            title: const Text(
+              'Enable notification',
+            ),
+            activeColor: Colors.black,
+          ),
           ListTile(
             onTap: () async {
               final date = await showDatePicker(
@@ -26,25 +54,81 @@ class SettingsScreen extends StatelessWidget {
                 initialTime: TimeOfDay.now(),
               );
               print(time);
-              final booking = showDateRangePicker(
-                  context: context,
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime(2030),
-                  builder: ((context, child) {
-                    return Theme(
-                        data: ThemeData(
-                          appBarTheme: const AppBarTheme(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.black,
-                          ),
-                        ),
-                        child: child!);
-                  }));
-              print(booking);
             },
             title: const Text(
               'Whats ur birtday?',
             ),
+          ),
+          ListTile(
+            title: const Text('Log out (iOS)'),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                context: context,
+                builder: (context) => CupertinoAlertDialog(
+                  title: const Text('Are you sure'),
+                  content: const Text('Plz dont go'),
+                  actions: [
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('No'),
+                    ),
+                    CupertinoDialogAction(
+                      onPressed: () => Navigator.of(context).pop(),
+                      isDestructiveAction: true,
+                      child: const Text('Yex'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Log out (Android)'),
+            textColor: Colors.red,
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Are you sure'),
+                  content: const Text('Plz dont go'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('No'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Yex'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Log out (iOS/Bottom)'),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) => CupertinoActionSheet(
+                  title: const Text('Are you sure'),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () {},
+                      child: const Text('No'),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () {},
+                      child: const Text('Yex'),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
           ListTile(
             onTap: () => showAboutDialog(
