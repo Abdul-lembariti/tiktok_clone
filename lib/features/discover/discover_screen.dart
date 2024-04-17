@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
@@ -25,13 +26,13 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: 'intial');
 
-  /*  void _onSearchChange(String value) {
+  void _onSearchChange(String value) {
     print('Searching for $value');
   }
 
   void _onSubmitted(String value) {
     print('Searched for $value');
-  } */
+  }
 
   @override
   void dispose() {
@@ -47,15 +48,16 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Search Input'),
-          /*  SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
+          title: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: Breakpoints.sm,
+            ),
             child: CupertinoSearchTextField(
               onChanged: _onSearchChange,
               onSubmitted: _onSubmitted,
               controller: _textEditingController,
             ),
-          ), */
+          ),
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             tabAlignment: TabAlignment.start,
@@ -94,70 +96,74 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                   crossAxisSpacing: Sizes.size10,
                   childAspectRatio: 9 / 20,
                 ),
-                itemBuilder: (context, index) => Column(
-                  children: [
-                    Container(
-                      clipBehavior: Clip.hardEdge,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: AspectRatio(
-                        aspectRatio: 9 / 16,
-                        child: FadeInImage.assetNetwork(
-                          fit: BoxFit.cover,
-                          placeholder: 'assets/images/img.jpeg',
-                          image:
-                              'https://i.pinimg.com/474x/79/d2/e3/79d2e329a0f6af978584d97dfd39396e.jpg',
+                itemBuilder: (context, index) => LayoutBuilder(
+                  builder: (context, constraints) => Column(
+                    children: [
+                      Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ),
-                    ),
-                    Gaps.v5,
-                    const Text(
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      'This is very long cap for the tiktok video uploadded currenty..... ereererre',
-                      style: TextStyle(
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Gaps.v5,
-                    Row(
-                      children: [
-                        const CircleAvatar(
-                          radius: 15,
-                          backgroundImage: NetworkImage(
-                            'https://i.pinimg.com/474x/df/8f/e4/df8fe449245b2b6dbc9529feaf31d7bf.jpg',
+                        child: AspectRatio(
+                          aspectRatio: 9 / 16,
+                          child: FadeInImage.assetNetwork(
+                            fit: BoxFit.cover,
+                            placeholder: 'assets/images/img.jpeg',
+                            image:
+                                'https://i.pinimg.com/474x/79/d2/e3/79d2e329a0f6af978584d97dfd39396e.jpg',
                           ),
                         ),
-                        Gaps.h8,
-                        Expanded(
-                          child: Text(
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            'nahul_realme #sd #lovee #swss',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[500],
+                      ),
+                      Gaps.v5,
+                      const Text(
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        'This is very long cap for the tiktok video uploadded currenty..... ereererre',
+                        style: TextStyle(
+                          fontSize: Sizes.size16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Gaps.v5,
+                      if (constraints.maxWidth < 200 ||
+                          constraints.maxWidth > 250)
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              radius: 15,
+                              backgroundImage: NetworkImage(
+                                'https://i.pinimg.com/474x/df/8f/e4/df8fe449245b2b6dbc9529feaf31d7bf.jpg',
+                              ),
                             ),
-                          ),
-                        ),
-                        Gaps.h4,
-                        const FaIcon(
-                          FontAwesomeIcons.heart,
-                          size: Sizes.size14,
-                        ),
-                        Gaps.h2,
-                        Text(
-                          '2.5M',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey[500],
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                            Gaps.h8,
+                            Expanded(
+                              child: Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                'nahul_realme #sd #lovee #swss',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey[500],
+                                ),
+                              ),
+                            ),
+                            Gaps.h4,
+                            const FaIcon(
+                              FontAwesomeIcons.heart,
+                              size: Sizes.size14,
+                            ),
+                            Gaps.h2,
+                            Text(
+                              '2.5M',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
+                        )
+                    ],
+                  ),
                 ),
               ),
               for (var tab in tabs.skip(1))
