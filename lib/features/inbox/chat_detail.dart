@@ -148,7 +148,8 @@ class _ChatDetailState extends State<ChatDetail> {
                         child: Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                          child: TextField(),
+                          child: Text('Text Input'),
+                          // TextField()
                         ),
                       ),
                       Gaps.h10,
