@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                       const CircleAvatar(
                         radius: 50,
                         foregroundImage: NetworkImage(
-                          'https://i.pinimg.com/474x/47/2a/41/472a412e7eaad7eabd1628b428eae663.jpg',
+                          'https://i.pinimg.com/474x/56/f7/14/56f714e6f2cf618eeab51b7ed6e41d05.jpg',
                         ),
                         child: Text(
                           'NHL',

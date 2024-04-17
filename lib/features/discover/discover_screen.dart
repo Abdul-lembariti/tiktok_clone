@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/constants/breakpoint.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
@@ -24,7 +25,7 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: 'intial');
 
- /*  void _onSearchChange(String value) {
+  /*  void _onSearchChange(String value) {
     print('Searching for $value');
   }
 
@@ -40,6 +41,7 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
@@ -86,8 +88,8 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                   vertical: Sizes.size5,
                 ),
                 itemCount: 20,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: width > Breakpoints.lg ? 5 : 2,
                   mainAxisSpacing: Sizes.size10,
                   crossAxisSpacing: Sizes.size10,
                   childAspectRatio: 9 / 20,
