@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_btn.dart';
+import 'package:tiktok_clone/utilis.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -15,7 +17,7 @@ class LoginScreen extends StatelessWidget {
   void _onLogin(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) =>  LoginFormScreen(),
+        builder: (context) => LoginFormScreen(),
       ),
     );
   }
@@ -39,13 +41,15 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Gaps.v20,
-              const Text(
-                'Manage your account, check notifications, comments on videos, and more',
-                style: TextStyle(
-                  fontSize: Sizes.size14,
-                  color: Colors.black38,
+              const Opacity(
+                opacity: 0.7,
+                child: Text(
+                  'Manage your account, check notifications, comments on videos, and more',
+                  style: TextStyle(
+                    fontSize: Sizes.size14,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               Gaps.v40,
               GestureDetector(
@@ -65,7 +69,7 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.grey[50],
+        color: isDarkMode(context) ? null : Colors.grey[50],
         elevation: 1,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -63,10 +63,7 @@ class _EmailState extends State<Email> {
     return GestureDetector(
       onTap: _onScafoldTap,
       child: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
           elevation: 0,
           title: const Text(
             'Sign Up',

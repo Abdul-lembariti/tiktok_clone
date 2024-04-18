@@ -99,7 +99,9 @@ class _InterestScreenState extends State<InterestScreen> {
         title: AnimatedOpacity(
           opacity: _showTitle ? 1 : 0,
           duration: const Duration(milliseconds: 300),
-          child: const Text('Choose your interests'),
+          child: const Text(
+            'Choose your interests',
+          ),
         ),
       ),
       body: Scrollbar(

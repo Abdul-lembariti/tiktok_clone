@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoint.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utilis.dart';
 
 final tabs = [
   'Top',
@@ -26,7 +28,7 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: 'intial');
 
- /*  void _onSearchChange(String value) {
+  /*  void _onSearchChange(String value) {
     print('Searching for $value');
   }
 
@@ -48,17 +50,20 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Search bar'),
-          /* ConstrainedBox(
+          title: /* const Text('Search bar'), */
+              ConstrainedBox(
             constraints: const BoxConstraints(
               maxWidth: Breakpoints.sm,
             ),
             child: CupertinoSearchTextField(
-              onChanged: _onSearchChange,
-              onSubmitted: _onSubmitted,
+              // onChanged: _onSearchChange,
+              // onSubmitted: _onSubmitted,
               controller: _textEditingController,
+              style: TextStyle(
+                color: isDarkMode(context) ? Colors.white : Colors.black,
+              ),
             ),
-          ), */
+          ),
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             tabAlignment: TabAlignment.start,
@@ -66,9 +71,6 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
               horizontal: Sizes.size16,
             ),
             isScrollable: true,
-            unselectedLabelColor: Colors.grey[500],
-            labelColor: Colors.black,
-            indicatorColor: Theme.of(context).primaryColor,
             tabs: [
               for (var tab in tabs)
                 Tab(
@@ -126,11 +128,16 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                         ),
                       ),
                       Gaps.v5,
-                      if (constraints.maxWidth < 200 ||
-                          constraints.maxWidth > 250)
-                        Row(
+                      DefaultTextStyle(
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: isDarkMode(context)
+                              ? Colors.grey[300]
+                              : Colors.grey[600],
+                        ),
+                        child: const Row(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 15,
                               backgroundImage: NetworkImage(
                                 'https://i.pinimg.com/474x/df/8f/e4/df8fe449245b2b6dbc9529feaf31d7bf.jpg',
@@ -144,12 +151,11 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                                 'nahul_realme #sd #lovee #swss',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.grey[500],
                                 ),
                               ),
                             ),
                             Gaps.h4,
-                            const FaIcon(
+                            FaIcon(
                               FontAwesomeIcons.heart,
                               size: Sizes.size14,
                             ),
@@ -158,11 +164,11 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                               '2.5M',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.grey[500],
                               ),
                             ),
                           ],
-                        )
+                        ),
+                      )
                     ],
                   ),
                 ),
