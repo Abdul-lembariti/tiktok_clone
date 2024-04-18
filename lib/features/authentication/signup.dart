@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/usernamescreen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_btn.dart';
+import 'package:tiktok_clone/utilis.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -38,19 +37,18 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  const Text(
+                  Text(
                     'Sign up for Tiktok',
-                    style: TextStyle(
-                      fontSize: Sizes.size28,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   Gaps.v20,
-                  const Text(
+                  Text(
                     'Create a profile, follow other accounts, make your own vides, and more',
                     style: TextStyle(
                       fontSize: Sizes.size14,
-                      color: Colors.black38,
+                      color: isDarkMode(context) 
+                          ? Colors.grey[200]
+                          : Colors.black38,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -95,7 +93,6 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-            color: Colors.grey[50],
             elevation: 1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

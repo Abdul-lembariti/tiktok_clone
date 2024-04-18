@@ -26,13 +26,13 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
   final TextEditingController _textEditingController =
       TextEditingController(text: 'intial');
 
-  void _onSearchChange(String value) {
+ /*  void _onSearchChange(String value) {
     print('Searching for $value');
   }
 
   void _onSubmitted(String value) {
     print('Searched for $value');
-  }
+  } */
 
   @override
   void dispose() {
@@ -48,7 +48,8 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: ConstrainedBox(
+          title: const Text('Search bar'),
+          /* ConstrainedBox(
             constraints: const BoxConstraints(
               maxWidth: Breakpoints.sm,
             ),
@@ -57,7 +58,7 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
               onSubmitted: _onSubmitted,
               controller: _textEditingController,
             ),
-          ),
+          ), */
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             tabAlignment: TabAlignment.start,
