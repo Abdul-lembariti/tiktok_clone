@@ -29,12 +29,12 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m3(gender) =>
       "Log in ${Intl.gender(gender, female: 'madam', male: 'sir', other: 'human')}";
 
-  static String m4(nameOfApp, when) => "Sign in for ${nameOfApp} account";
+  static String m4(nameOfApp) => "Sign in for ${nameOfApp} account";
 
   static String m5(videoCount) =>
       "Create a profile, follow other accounts, make your own ${Intl.plural(videoCount, zero: 'no videos', one: 'video', other: 'videos')}, and more";
 
-  static String m6(nameOfApp, when) => "Sign up for ${nameOfApp} ${when}";
+  static String m6(nameOfApp) => "Sign up for ${nameOfApp}";
 
   static String m7(value) => "${value}";
 

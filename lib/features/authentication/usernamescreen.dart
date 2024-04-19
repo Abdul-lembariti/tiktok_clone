@@ -5,6 +5,7 @@ import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
 
 class Username extends StatefulWidget {
+  static String routeName = '/username';
   const Username({super.key});
 
   @override
@@ -35,9 +36,10 @@ class _UsernameState extends State<Username> {
 
   void _onEmail() {
     if (_username.isEmpty) return;
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const Email(),
+    Navigator.of(context).pushNamed(
+      Email.routeName,
+      arguments: EmailScreenArgs(
+        username: _username,
       ),
     );
   }

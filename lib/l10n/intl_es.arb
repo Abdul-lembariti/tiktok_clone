@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "signUpTitle": "Regístrate en {nameOfApp} {when}",
+  "signUpTitle": "Regístrate en {nameOfApp}",
   "signUpSubTitle": "Crea un perfil, sigue otras cuentas, crea tus propios videos y más",
   "emailPasswordButton": "Usar correo electrónico y contraseña",
   "continueWithAppleButon": "Continuar con Apple",

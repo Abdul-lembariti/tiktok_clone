@@ -31,7 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m5(videoCount) =>
       "Crea un perfil, sigue otras cuentas, crea tus propios videos y más";
 
-  static String m6(nameOfApp, when) => "Regístrate en ${nameOfApp} ${when}";
+  static String m6(nameOfApp) => "Regístrate en ${nameOfApp}";
 
   static String m7(value) => "${value}";
 

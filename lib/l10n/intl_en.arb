@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "signUpTitle": "Sign up for {nameOfApp} {when}",
+  "signUpTitle": "Sign up for {nameOfApp}",
   "@signUpTitle": {
     "description": "The title people see when they open the app.",
     "placeholders": {
@@ -17,10 +17,6 @@
       "nameOfApp": {
         "type": "String",
         "example": "TikTok"
-      },
-      "when": {
-        "type": "DateTime",
-        "format": "y"
       }
     }
   },
