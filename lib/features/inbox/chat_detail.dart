@@ -141,7 +141,6 @@ class _ChatDetailState extends State<ChatDetail> {
               child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: BottomAppBar(
-                  color: Colors.grey.shade50,
                   child: Row(
                     children: [
                       const Expanded(

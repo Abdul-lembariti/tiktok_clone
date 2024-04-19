@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
+import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/users/profile_screen.dart';
@@ -17,7 +18,7 @@ class MainNavigation extends StatefulWidget {
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 3;
 
   void _onTap(int index) {
     setState(() {
@@ -43,7 +44,8 @@ class _MainNavigationState extends State<MainNavigation> {
     final isDark = isDarkMode(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
+      backgroundColor:
+          _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
       body: Stack(
         children: [
           Offstage(
@@ -64,50 +66,58 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomAppBar(
-        color: _selectedIndex == 0 || isDark ? Colors.black : Colors.grey[800],
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            NavTab(
-              text: 'Home',
-              isSelected: _selectedIndex == 0,
-              icon: FontAwesomeIcons.house,
-              selectedIcon: FontAwesomeIcons.house,
-              onTap: () => _onTap(0),
-              selectedIndex: _selectedIndex,
-            ),
-            NavTab(
-              text: 'Discover',
-              isSelected: _selectedIndex == 1,
-              icon: FontAwesomeIcons.compass,
-              selectedIcon: FontAwesomeIcons.solidCompass,
-              onTap: () => _onTap(1),
-              selectedIndex: _selectedIndex,
-            ),
-            Gaps.h24,
-            GestureDetector(
-              onTap: _onPostVideo,
-              child: const PostButton(),
-            ),
-            Gaps.h24,
-            NavTab(
-              text: 'Inbox',
-              isSelected: _selectedIndex == 3,
-              icon: FontAwesomeIcons.message,
-              selectedIcon: FontAwesomeIcons.inbox,
-              onTap: () => _onTap(3),
-              selectedIndex: _selectedIndex,
-            ),
-            NavTab(
-              text: 'Profile',
-              isSelected: _selectedIndex == 4,
-              icon: FontAwesomeIcons.user,
-              selectedIcon: FontAwesomeIcons.solidUser,
-              onTap: () => _onTap(4),
-              selectedIndex: _selectedIndex,
-            )
-          ],
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        padding: const EdgeInsets.only(
+          bottom: Sizes.size32,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(
+            Sizes.size12,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              NavTab(
+                text: 'Home',
+                isSelected: _selectedIndex == 0,
+                icon: FontAwesomeIcons.house,
+                selectedIcon: FontAwesomeIcons.house,
+                onTap: () => _onTap(0),
+                selectedIndex: _selectedIndex,
+              ),
+              NavTab(
+                text: 'Discover',
+                isSelected: _selectedIndex == 1,
+                icon: FontAwesomeIcons.compass,
+                selectedIcon: FontAwesomeIcons.solidCompass,
+                onTap: () => _onTap(1),
+                selectedIndex: _selectedIndex,
+              ),
+              Gaps.h24,
+              GestureDetector(
+                onTap: _onPostVideo,
+                child: const PostButton(),
+              ),
+              Gaps.h24,
+              NavTab(
+                text: 'Inbox',
+                isSelected: _selectedIndex == 3,
+                icon: FontAwesomeIcons.message,
+                selectedIcon: FontAwesomeIcons.inbox,
+                onTap: () => _onTap(3),
+                selectedIndex: _selectedIndex,
+              ),
+              NavTab(
+                text: 'Profile',
+                isSelected: _selectedIndex == 4,
+                icon: FontAwesomeIcons.user,
+                selectedIcon: FontAwesomeIcons.solidUser,
+                onTap: () => _onTap(4),
+                selectedIndex: _selectedIndex,
+              )
+            ],
+          ),
         ),
       ),
     );

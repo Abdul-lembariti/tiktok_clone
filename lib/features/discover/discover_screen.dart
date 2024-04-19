@@ -7,6 +7,8 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/utilis.dart';
 
+import '../../generated/l10n.dart';
+
 final tabs = [
   'Top',
   'Users',
@@ -118,11 +120,11 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                         ),
                       ),
                       Gaps.v5,
-                      const Text(
+                      Text(
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        'This is very long cap for the tiktok video uploadded currenty..... ereererre',
-                        style: TextStyle(
+                        S.of(context).discover,
+                        style: const TextStyle(
                           fontSize: Sizes.size16,
                           fontWeight: FontWeight.bold,
                         ),

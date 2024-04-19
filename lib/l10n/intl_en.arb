@@ -1,0 +1,78 @@
+{
+  "@@locale": "en",
+  "signUpTitle": "Sign up for {nameOfApp} {when}",
+  "@signUpTitle": {
+    "description": "The title people see when they open the app.",
+    "placeholders": {
+      "nameOfApp": {
+        "type": "String",
+        "example": "TikTok"
+      }
+    }
+  },
+  "loginTitle": "Sign in for {nameOfApp} account",
+  "@loginTitle": {
+    "description": "The title people see when they open the login screen.",
+    "placeholders": {
+      "nameOfApp": {
+        "type": "String",
+        "example": "TikTok"
+      },
+      "when": {
+        "type": "DateTime",
+        "format": "y"
+      }
+    }
+  },
+  "signUpSubTitle": "Create a profile, follow other accounts, make your own {videoCount, plural, =0{no videos} =1{video} other{videos}}, and more",
+  "emailPasswordButton": "Use email & password",
+  "continueWithAppleButon": "Continue with Apple",
+  "alreadyHaveAnAccount": "Already have an Account?",
+  "logIn": "Log in {gender, select, male{sir} female{madam} other{human}}",
+  "likeCount": "{value}",
+  "@likeCount": {
+    "description": "Any thing u want",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "commentCount": "{value}",
+  "@commentCount": {
+    "description": "Any thing u want",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "totalComment": "{value}",
+  "@totalComment": {
+    "description": "Any thing u want",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "commentLike": "{value}",
+  "@commentLike": {
+    "description": "Any thing u want",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "comment": "Hello nice factory factory factory factory factory facto facto fy..",
+  "discover": "This is very long cap for the tiktok video uploadded currenty..... ereererre",
+  "inbox": "Inbox",
+  "activity": "Activity",
+  "newFollowers": "New followers",
+  "messageFromYourFollowersWillAppearHere": "Message from your followers will appear here"
+}

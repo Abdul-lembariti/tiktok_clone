@@ -1,0 +1,19 @@
+{
+  "@@locale": "es",
+  "signUpTitle": "Regístrate en {nameOfApp} {when}",
+  "signUpSubTitle": "Crea un perfil, sigue otras cuentas, crea tus propios videos y más",
+  "emailPasswordButton": "Usar correo electrónico y contraseña",
+  "continueWithAppleButon": "Continuar con Apple",
+  "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+  "logIn": "Acceso",
+  "likeCount": "{value}",
+  "commentCount": "{value}",
+  "totalComment": "{value}",
+  "commentLike": "{value}",
+  "comment": "Hola linda fábrica fábrica fábrica fábrica fábrica facto facto fy..",
+  "discover": "Este es un límite muy largo para el video de Tiktok subido actualmente..... ereererre",
+  "inbox": "Bandeja de entrada",
+  "activity": "Actividad",
+  "newFollowers": "Nuevos seguidores",
+  "messageFromYourFollowersWillAppearHere": "El mensaje de tus seguidores aparecerá aquí."
+}

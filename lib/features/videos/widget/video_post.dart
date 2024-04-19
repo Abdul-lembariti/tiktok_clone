@@ -5,6 +5,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widget/comments.dart';
 import 'package:tiktok_clone/features/videos/widget/video_btn.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -205,7 +206,7 @@ class _VideoPostState extends State<VideoPost>
                   onTap: _like,
                   child: VideoBtnn(
                     icon: FontAwesomeIcons.solidHeart,
-                    text: '2.9M',
+                    text: S.of(context).likeCount(987987987),
                     color: _isLiked ? Colors.red : Colors.white,
                   ),
                 ),
@@ -214,10 +215,10 @@ class _VideoPostState extends State<VideoPost>
                   onTap: () {
                     _onCommentsTap(context);
                   },
-                  child: const VideoBtnn(
+                  child: VideoBtnn(
                     icon: FontAwesomeIcons.solidComment,
                     color: Colors.white,
-                    text: '3.3k',
+                    text: S.of(context).commentCount(65658),
                   ),
                 ),
                 Gaps.v20,

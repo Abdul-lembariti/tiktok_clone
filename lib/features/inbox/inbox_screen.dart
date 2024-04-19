@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/inbox/activity_screen.dart';
 import 'package:tiktok_clone/features/inbox/chats_screen.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 
 class InboxScreen extends StatelessWidget {
   const InboxScreen({super.key});
@@ -28,7 +29,9 @@ class InboxScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        title: const Text('Inbox'),
+        title: Text(
+          S.of(context).inbox,
+        ),
         actions: [
           IconButton(
             onPressed: () => _onDmPressed(context),
@@ -40,9 +43,9 @@ class InboxScreen extends StatelessWidget {
         children: [
           ListTile(
             onTap: () => _onActivity(context),
-            title: const Text(
-              'Activity',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            title: Text(
+              S.of(context).activity,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             trailing: const FaIcon(
               FontAwesomeIcons.chevronRight,
@@ -68,12 +71,12 @@ class InboxScreen extends StatelessWidget {
                 ),
               ),
             ),
-            title: const Text(
-              'New followers',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            title: Text(
+              S.of(context).newFollowers,
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             subtitle:
-                const Text('Message from your followers will appear here'),
+                Text(S.of(context).messageFromYourFollowersWillAppearHere),
             trailing: const FaIcon(
               FontAwesomeIcons.chevronRight,
               size: Sizes.size16,
