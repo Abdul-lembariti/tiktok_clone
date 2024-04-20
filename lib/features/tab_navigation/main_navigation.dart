@@ -62,7 +62,10 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const ProfileScreen(),
+            child: const ProfileScreen(
+              username: 'Nahul',
+              tab: '',
+            ),
           ),
         ],
       ),

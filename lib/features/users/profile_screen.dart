@@ -6,7 +6,14 @@ import 'package:tiktok_clone/features/settings/settings_screen.dart';
 import 'package:tiktok_clone/features/users/widgets/persist_tab.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final String username;
+  final String tab;
+
+  const ProfileScreen({
+    super.key,
+    required this.username,
+    required this.tab,
+  });
 
   void _onSetings(BuildContext context) {
     Navigator.of(context).push(
@@ -20,12 +27,13 @@ class ProfileScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       body: SafeArea(
         child: DefaultTabController(
+          initialIndex: tab == 'likes' ? 1 : 0,
           length: 2,
           child: NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
                   SliverAppBar(
-                    title: const Text('Nahul'),
+                    title: Text(username),
                     actions: [
                       IconButton(
                         onPressed: () => _onSetings(context),
@@ -53,9 +61,9 @@ class ProfileScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              '@Nahul',
-                              style: TextStyle(
+                            Text(
+                              '@$username',
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: Sizes.size18,
                               ),

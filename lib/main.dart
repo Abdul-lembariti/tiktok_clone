@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/email_screen.dart';
-import 'package:tiktok_clone/features/authentication/login_screen.dart';
-import 'package:tiktok_clone/features/authentication/signup.dart';
-import 'package:tiktok_clone/features/authentication/usernamescreen.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
+import 'package:tiktok_clone/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await SystemChrome.setPreferredOrientations(
+/*   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp],
-  );
+  ); */
 
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.dark,
@@ -28,7 +25,8 @@ class TikTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     S.load(const Locale('es'));
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Tiktok Clone',
       localizationsDelegates: const [
@@ -101,13 +99,6 @@ class TikTokApp extends StatelessWidget {
         ),
         primaryColor: const Color(0xFFE9435A),
       ),
-      initialRoute: SignUpScreen.routeName,
-      routes: {
-        SignUpScreen.routeName: (context) => const SignUpScreen(),
-        Username.routeName: (context) => const Username(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        Email.routeName: (context) => const Email()
-      },
     );
   }
 }
