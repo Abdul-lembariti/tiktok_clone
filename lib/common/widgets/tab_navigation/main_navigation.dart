@@ -5,8 +5,8 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/users/profile_screen.dart';
-import 'package:tiktok_clone/features/tab_navigation/widgets/navigation.dart';
-import 'package:tiktok_clone/features/tab_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/navigation.dart';
+import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/videos/video_timeline_screen.dart';
 import 'package:tiktok_clone/utilis.dart';
 
@@ -54,7 +54,7 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
           Offstage(
             offstage: _selectedIndex != 1,
-            child: const DiscoveScreen(),
+            child: const DiscoveScreen(), 
           ),
           Offstage(
             offstage: _selectedIndex != 3,

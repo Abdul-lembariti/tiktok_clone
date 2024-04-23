@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
 import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
-// ignore: must_be_immutable
-class LoginFormScreen extends StatelessWidget {
-  LoginFormScreen({super.key});
+class LoginFormScreen extends StatefulWidget {
+  const LoginFormScreen({super.key});
 
+  @override
+  State<LoginFormScreen> createState() => _LoginFormScreenState();
+}
+
+class _LoginFormScreenState extends State<LoginFormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _onSubmitTap(BuildContext context) {
+  Map<String, String> formData = {};
+
+  void _onSubmitTap() {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const InterestScreen(),
-          ),
-          (route) {
-            return false;
-          },
-        );
+        context.goNamed(InterestScreen.routeName);
       }
     }
   }
-
-  Map<String, String> formData = {};
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +94,7 @@ class LoginFormScreen extends StatelessWidget {
                 ),
                 Gaps.v28,
                 GestureDetector(
-                  onTap: () => _onSubmitTap(context),
+                  onTap: _onSubmitTap,
                   child: FormButton(
                     disabled: false,
                     text: 'Log In',

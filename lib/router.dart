@@ -1,64 +1,74 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tiktok_clone/features/authentication/email_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/signup.dart';
-import 'package:tiktok_clone/features/authentication/usernamescreen.dart';
-import 'package:tiktok_clone/features/users/profile_screen.dart';
+import 'package:tiktok_clone/features/inbox/activity_screen.dart';
+import 'package:tiktok_clone/features/inbox/chat_detail.dart';
+import 'package:tiktok_clone/features/inbox/chats_screen.dart';
+import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
+import 'package:tiktok_clone/features/videos/video_recording_screen.dart';
+import 'package:tiktok_clone/tab_navigation/main_navigation.dart';
 
 final router = GoRouter(
+  initialLocation: '/inbox',
   routes: [
     GoRoute(
       name: SignUpScreen.routerName,
       path: SignUpScreen.routeUrl,
       builder: (context, state) => const SignUpScreen(),
+    ),
+    GoRoute(
+      name: LoginScreen.routeName,
+      path: LoginScreen.routeUrl,
+      builder: (context, state) => const LoginScreen(),
+    ),
+    GoRoute(
+      name: InterestScreen.routeName,
+      path: InterestScreen.routerUrl,
+      builder: (context, state) => const InterestScreen(),
+    ),
+    GoRoute(
+      path: '/:tab(home|inbox|discover|profile)',
+      name: MainNavigation.routeName,
+      builder: (context, state) {
+        final tab = state.params['tab']!;
+
+        return MainNavigation(tab: tab);
+      },
+    ),
+    GoRoute(
+      name: ActivityScreeen.routeName,
+      path: ActivityScreeen.routeUrl,
+      builder: (context, state) => const ActivityScreeen(),
+    ),
+    GoRoute(
+      name: ChatScreen.routeName,
+      path: ChatScreen.routeUrl,
+      builder: (context, state) => const ChatScreen(),
       routes: [
         GoRoute(
-          path: Username.routeUrl,
-          name: Username.routeName,
-          builder: (context, state) => const Username(),
-          routes: [
-            GoRoute(
-              name: Email.routeName,
-              path: Email.routeUlr,
-              builder: (context, state) {
-                final args = state.extra as EmailScreenArgs;
-                return Email(username: args.username);
-              },
-            ),
-          ],
-        ),
+          name: ChatDetail.routeName,
+          path: ChatDetail.routeUrl,
+          builder: (context, state) {
+            final chatId = state.params['chatId'] as String;
+            return ChatDetail(chatId: chatId);
+          },
+        )
       ],
     ),
-   /*  GoRoute(
-      path: LoginScreen.routeName,
-      builder: (context, state) => const LoginScreen(),
-    ), */
-    /* GoRoute(
-      name: 'username_screen',
-      path: Username.routeName,
-      pageBuilder: (context, state) {
-        return CustomTransitionPage(
-            child: const Username(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return FadeTransition(
-                opacity: animation,
-                child: ScaleTransition(
-                  scale: animation,
-                  child: child,
-                ),
-              );
-            });
-      },
-    ), */
-
     GoRoute(
-      path: '/users/:username',
-      builder: (context, state) {
-        final username = state.params['username'];
-        final tab = state.queryParams['show'];
-        return ProfileScreen(username: username!, tab: tab!);
-      },
+      name: VideoRecording.routeName,
+      path: VideoRecording.routeUrl,
+      pageBuilder: (context, state) => CustomTransitionPage(
+          transitionDuration: const Duration(
+            milliseconds: 200,
+          ),
+          child: const VideoRecording(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            final position = Tween(begin: const Offset(0, 1), end: Offset.zero)
+                .animate(animation);
+            return SlideTransition(position: position, child: child);
+          }),
     ),
   ],
 );

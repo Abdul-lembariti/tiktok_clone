@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 class ChatDetail extends StatefulWidget {
-  const ChatDetail({super.key});
+  static const String routeName = 'chatDetail';
+  static const String routeUrl = ':chatId';
+  final String chatId;
+
+  const ChatDetail({super.key, required this.chatId});
 
   @override
   State<ChatDetail> createState() => _ChatDetailState();
@@ -52,9 +55,9 @@ class _ChatDetailState extends State<ChatDetail> {
               ],
             ),
           ),
-          title: const Text(
-            'Nahul',
-            style: TextStyle(
+          title: Text(
+            'Nahul (${widget.chatId})',
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -168,3 +171,4 @@ class _ChatDetailState extends State<ChatDetail> {
     );
   }
 }
+

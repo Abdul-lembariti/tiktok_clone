@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
@@ -9,7 +8,9 @@ import 'package:tiktok_clone/features/authentication/widgets/auth_btn.dart';
 import 'package:tiktok_clone/utilis.dart';
 
 class LoginScreen extends StatelessWidget {
-  static String routeName = '/login';
+  static String routeName = 'login';
+  static String routeUrl = '/login';
+
   const LoginScreen({super.key});
 
   void _onSignUp(BuildContext context) {

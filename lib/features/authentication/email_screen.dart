@@ -13,8 +13,7 @@ class EmailScreenArgs {
 }
 
 class Email extends StatefulWidget {
-  static String routeUlr = 'email';
-  static String routeName = 'email';
+
 
   final String username;
 
