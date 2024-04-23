@@ -2,11 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/videos/widget/comments.dart';
-import 'package:tiktok_clone/features/videos/widget/video_btn.dart';
+import 'package:tiktok_clone/features/videos/view_modal/playback_vm.dart';
+import 'package:tiktok_clone/features/videos/views/widget/comments.dart';
+import 'package:tiktok_clone/features/videos/views/widget/video_btn.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -67,6 +67,8 @@ class _VideoPostState extends State<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
+
+    context.read<PlayBackConfigViewModal>().addListener(_onPlayBackChange);
   }
 
   @override
@@ -75,12 +77,25 @@ class _VideoPostState extends State<VideoPost>
     super.dispose();
   }
 
+  void _onPlayBackChange() {
+    if (!mounted) return;
+    final muted = context.read<PlayBackConfigViewModal>().muted;
+    if (muted) {
+      _videoPlayerController.setVolume(0);
+    } else {
+      _videoPlayerController.setVolume(1);
+    }
+  }
+
   void _onVisibleChange(VisibilityInfo info) {
     if (!mounted) return;
     if (info.visibleFraction == 1 &&
         !_isPaused &&
         !_videoPlayerController.value.isPlaying) {
-      _videoPlayerController.play();
+      final autoPlay = context.read<PlayBackConfigViewModal>().autoPlay;
+      if (autoPlay) {
+        _videoPlayerController.play();
+      }
     }
     if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
       _tooglePause();
@@ -168,10 +183,12 @@ class _VideoPostState extends State<VideoPost>
             top: 40,
             child: IconButton(
               onPressed: () {
-                context.read<VideoConfig>().toogleIsMuted();
+                context.read<PlayBackConfigViewModal>().setMuted(
+                      !context.read<PlayBackConfigViewModal>().muted,
+                    );
               },
               icon: FaIcon(
-                context.watch<VideoConfig>().isMuted
+                context.watch<PlayBackConfigViewModal>().muted
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
