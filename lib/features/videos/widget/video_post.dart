@@ -32,6 +32,8 @@ class _VideoPostState extends State<VideoPost>
   bool _isPaused = false;
   bool _isLiked = false;
 
+  bool _autoMute = videoConfig.autoMute;
+
   final Duration _animationDuration = const Duration(milliseconds: 300);
   late final AnimationController _animationController;
 
@@ -66,6 +68,12 @@ class _VideoPostState extends State<VideoPost>
       value: 1.5,
       duration: _animationDuration,
     );
+
+    videoConfig.addListener(() {
+      setState(() {
+        _autoMute = videoConfig.autoMute;
+      });
+    });
   }
 
   @override
@@ -121,7 +129,6 @@ class _VideoPostState extends State<VideoPost>
 
   @override
   Widget build(BuildContext context) {
-    VideoConfigData.of(context).autoMute;
     return VisibilityDetector(
       key: const Key('{widget.index}'),
       onVisibilityChanged: _onVisibleChange,
@@ -167,9 +174,9 @@ class _VideoPostState extends State<VideoPost>
             right: 20,
             top: 40,
             child: IconButton(
-              onPressed: VideoConfigData.of(context).toogleMuted,
+              onPressed: videoConfig.toogleAutoMute,
               icon: FaIcon(
-                VideoConfigData.of(context).autoMute
+                _autoMute
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,

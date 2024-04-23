@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -31,25 +32,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         body: ListView(
           children: [
-            SwitchListTile.adaptive(
-              value: VideoConfigData.of(context).autoMute,
-              onChanged: (value) {
-                VideoConfigData.of(context).toogleMuted();
-              },
-              title: const Text('Auto Mute'),
-              subtitle: const Text('Video will be muted by default'),
+            AnimatedBuilder(
+              animation: videoConfig,
+              builder: (context, child) => SwitchListTile.adaptive(
+                value: videoConfig.autoMute,
+                onChanged: (value) {
+                  videoConfig.toogleAutoMute();
+                },
+                title: const Text('Auto mute'),
+                subtitle: const Text('Mute all videos'),
+              ),
             ),
             SwitchListTile.adaptive(
               value: _notification,
               onChanged: _onNotification,
               title: const Text('Enable notification'),
-              subtitle: const Text('enable sound not'),
+              subtitle: const Text('enable sound notification'),
             ),
             CheckboxListTile(
               value: _notification,
               onChanged: _onNotification,
               title: const Text(
-                'Enable notification',
+                'Social Mails',
               ),
               activeColor: Colors.black,
             ),
