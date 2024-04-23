@@ -1,12 +1,5 @@
 import 'package:flutter/material.dart';
 
-class VideoConfig extends ChangeNotifier {
-  bool autoMute = false;
+final videoConfig = ValueNotifier(false);
 
-  void toogleAutoMute(){
-    autoMute = !autoMute;
-    notifyListeners();
-  }
-}
-
-final videoConfig = VideoConfig();
+final themeConfig = ValueNotifier(false);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/router.dart';
@@ -40,7 +41,7 @@ class TikTokApp extends StatelessWidget {
         Locale('es'),
         Locale('ko'),
       ],
-      themeMode: ThemeMode.system,
+      themeMode: themeConfig.value ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
         textTheme: Typography.blackMountainView,

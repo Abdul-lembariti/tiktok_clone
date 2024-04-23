@@ -35,18 +35,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
             AnimatedBuilder(
               animation: videoConfig,
               builder: (context, child) => SwitchListTile.adaptive(
-                value: videoConfig.autoMute,
+                value: videoConfig.value,
                 onChanged: (value) {
-                  videoConfig.toogleAutoMute();
+                  videoConfig.value = !videoConfig.value;
                 },
                 title: const Text('Auto mute'),
                 subtitle: const Text('Mute all videos'),
               ),
             ),
+            ValueListenableBuilder(
+              valueListenable: themeConfig,
+              builder: (context, value, child) => SwitchListTile.adaptive(
+                value: value,
+                onChanged: (newValue) {
+                  themeConfig.value = newValue;
+                },
+                title: const Text('Enable Darkmode'),
+                subtitle: const Text('enable dark theme'),
+              ),
+            ),
             SwitchListTile.adaptive(
               value: _notification,
               onChanged: _onNotification,
-              title: const Text('Enable notification'),
+              title: const Text('Enable Notification'),
               subtitle: const Text('enable sound notification'),
             ),
             CheckboxListTile(
