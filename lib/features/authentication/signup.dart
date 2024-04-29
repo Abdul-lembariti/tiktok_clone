@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/usernamescreen.dart';
+import 'package:tiktok_clone/features/authentication/view_models/social_auth_modal.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_btn.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/utilis.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends ConsumerWidget {
   static const routeUrl = '/';
   static const routerName = 'signUp';
 
@@ -29,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // print(Localizations.localeOf(context));
 
     return OrientationBuilder(
@@ -68,9 +70,14 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     Gaps.v16,
-                    AuthButton(
-                      icon: const FaIcon(FontAwesomeIcons.apple),
-                      text: S.of(context).continueWithAppleButon,
+                    GestureDetector(
+                      onTap: () => ref
+                          .read(socialAuthProvider.notifier)
+                          .googleSignIn(context),
+                      child: const AuthButton(
+                        icon: FaIcon(FontAwesomeIcons.google),
+                        text: 'Continue with Google',
+                      ),
                     ),
                   ],
                   if (orientation == Orientation.landscape)

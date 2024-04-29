@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/email_screen.dart';
+
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
 
-class Username extends StatefulWidget {
+class Username extends ConsumerStatefulWidget {
   const Username({super.key});
 
   @override
-  State<Username> createState() => _UsernameState();
+  ConsumerState<Username> createState() => _UsernameState();
 }
 
-class _UsernameState extends State<Username> {
+class _UsernameState extends ConsumerState<Username> {
   final TextEditingController _usernameContoller = TextEditingController();
   String _username = '';
 
@@ -35,6 +37,7 @@ class _UsernameState extends State<Username> {
 
   void _onEmail() {
     if (_username.isEmpty) return;
+
     Navigator.push(
       context,
       MaterialPageRoute(

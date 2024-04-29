@@ -1,29 +1,38 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok_clone/features/videos/models/playback_config.dart';
 import 'package:tiktok_clone/features/videos/repository/videoplayback_repository.dart';
 
-class PlayBackConfigViewModal extends ChangeNotifier {
+class PlayBackConfigViewModal extends Notifier<PlayBackConfigModal> {
   final VideoPlayBackConfigRep _repository;
-
-  late final PlayBackConfigModal _modal = PlayBackConfigModal(
-    autoPlay: _repository.isAutoPlay(),
-    muted: _repository.isMuted(),
-  );
 
   PlayBackConfigViewModal(this._repository);
 
-  bool get muted => _modal.muted;
-  bool get autoPlay => _modal.autoPlay;
-
   void setMuted(bool value) {
     _repository.setMuted(value);
-    _modal.muted = value;
-    notifyListeners();
+    state = PlayBackConfigModal(
+      autoPlay: state.autoPlay,
+      muted: value,
+    );
   }
 
   void setAutoPlay(bool value) {
     _repository.setAutoPlay(value);
-    _modal.autoPlay = value;
-    notifyListeners();
+    state = PlayBackConfigModal(
+      autoPlay: value,
+      muted: state.muted,
+    );
+  }
+
+  @override
+  PlayBackConfigModal build() {
+    return PlayBackConfigModal(
+      autoPlay: _repository.isAutoPlay(),
+      muted: _repository.isMuted(),
+    );
   }
 }
+
+final playBackConfigProvider =
+    NotifierProvider<PlayBackConfigViewModal, PlayBackConfigModal>(
+  () => throw UnimplementedError(),
+);

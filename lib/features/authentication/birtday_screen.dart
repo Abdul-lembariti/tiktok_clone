@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/view_models/signup_viewmodel.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
-import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
-class Birthday extends StatefulWidget {
+class Birthday extends ConsumerStatefulWidget {
   const Birthday({super.key});
 
   @override
-  State<Birthday> createState() => _BirthdayState();
+  ConsumerState<Birthday> createState() => _BirthdayState();
 }
 
-class _BirthdayState extends State<Birthday> {
+class _BirthdayState extends ConsumerState<Birthday> {
   final TextEditingController _birtdayContoller = TextEditingController();
   DateTime date = DateTime.now();
 
@@ -31,7 +31,7 @@ class _BirthdayState extends State<Birthday> {
   }
 
   void _onEmail() {
-    context.pushReplacementNamed(InterestScreen.routeName);
+    ref.read(signUpProvider.notifier).signUp(context);
   }
 
   void _setTextField(DateTime date) {
@@ -91,7 +91,7 @@ class _BirthdayState extends State<Birthday> {
             GestureDetector(
               onTap: _onEmail,
               child: FormButton(
-                disabled: false,
+                disabled: ref.watch(signUpProvider).isLoading,
                 text: 'Next',
               ),
             )

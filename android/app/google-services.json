@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "75477171815",
+    "firebase_url": "https://derickdev-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "derickdev",
+    "storage_bucket": "derickdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75477171815:android:c0221727caf7b1be311ec2",
+        "android_client_info": {
+          "package_name": "com.example.sj_agriculture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75477171815-iqlm1erfof83gta8rgkfisg4rfgn32t4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sj_agriculture",
+            "certificate_hash": "a372d6d341dd5923e5a67c22c553da7ad0104caa"
+          }
+        },
+        {
+          "client_id": "75477171815-h1nvb5annjjrt86kmnoidracp47360an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc-MVf1arSZDk4th0nc0AWH8t-FjdnzOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75477171815-h1nvb5annjjrt86kmnoidracp47360an.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "75477171815-m54lpn1kqu3ts69tgarphf2dtqgcqp7v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sjAgriculture"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75477171815:android:0379266b10c93fc4311ec2",
+        "android_client_info": {
+          "package_name": "com.example.tiktok_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75477171815-h1nvb5annjjrt86kmnoidracp47360an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc-MVf1arSZDk4th0nc0AWH8t-FjdnzOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75477171815-h1nvb5annjjrt86kmnoidracp47360an.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "75477171815-m54lpn1kqu3ts69tgarphf2dtqgcqp7v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sjAgriculture"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

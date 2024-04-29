@@ -4,7 +4,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
-import 'package:tiktok_clone/features/users/profile_screen.dart';
+import 'package:tiktok_clone/features/users/views/profile_screen.dart';
 import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/navigation.dart';
 import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/post_video_button.dart';
 import 'package:tiktok_clone/features/videos/views/video_timeline_screen.dart';

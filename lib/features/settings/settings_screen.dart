@@ -1,29 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
+import 'package:tiktok_clone/features/authentication/repos/authenticationrepo.dart';
 import 'package:tiktok_clone/features/videos/view_modal/playback_vm.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notification = false;
-
-  void _onNotification(bool? newValue) {
-    if (newValue == null) return;
-    setState(() {
-      _notification = newValue;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Localizations.override(
       context: context,
       locale: const Locale('ko'),
@@ -34,16 +22,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: ListView(
           children: [
             SwitchListTile.adaptive(
-              value: context.watch<PlayBackConfigViewModal>().muted,
-              onChanged: (value) =>
-                  context.read<PlayBackConfigViewModal>().setMuted(value),
+              value: ref.watch(playBackConfigProvider).muted,
+              onChanged: (value) => {
+                ref.read(playBackConfigProvider.notifier).setMuted(value),
+              },
               title: const Text('Mute Video'),
               subtitle: const Text('Video will be muted by default '),
             ),
             SwitchListTile.adaptive(
-              value: context.watch<PlayBackConfigViewModal>().autoPlay,
+              value: ref.watch(playBackConfigProvider).autoPlay,
               onChanged: (value) =>
-                  context.read<PlayBackConfigViewModal>().setAutoPlay(value),
+                  ref.read(playBackConfigProvider.notifier).setAutoPlay(value),
               title: const Text('AutoPlay'),
               subtitle: const Text('enable autoplay in ur videos'),
             ),
@@ -59,14 +48,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SwitchListTile.adaptive(
-              value: _notification,
-              onChanged: _onNotification,
+              value: false,
+              onChanged: (value) {},
               title: const Text('Enable Notification'),
               subtitle: const Text('enable sound notification'),
             ),
             CheckboxListTile(
-              value: _notification,
-              onChanged: _onNotification,
+              value: false,
+              onChanged: (value) {},
               title: const Text(
                 'Social Mails',
               ),
@@ -82,7 +71,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if (kDebugMode) {
                   print(date);
                 }
-                if (!mounted) return;
                 final time = await showTimePicker(
                   // ignore: use_build_context_synchronously
                   context: context,
@@ -111,9 +99,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: const Text('No'),
                       ),
                       CupertinoDialogAction(
-                        onPressed: () => Navigator.of(context).pop(),
+                        onPressed: () {
+                          ref.read(authRepo).signOut();
+                          context.go('/');
+                        },
                         isDestructiveAction: true,
-                        child: const Text('Yex'),
+                        child: const Text('Yes'),
                       ),
                     ],
                   ),

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
+import 'package:tiktok_clone/features/authentication/view_models/social_auth_modal.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_btn.dart';
 import 'package:tiktok_clone/utilis.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   static String routeName = 'login';
   static String routeUrl = '/login';
 
@@ -20,13 +22,13 @@ class LoginScreen extends StatelessWidget {
   void _onLogin(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => LoginFormScreen(),
+        builder: (context) => const LoginFormScreen(),
       ),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -63,9 +65,13 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Gaps.v16,
-              const AuthButton(
-                icon: FaIcon(FontAwesomeIcons.apple),
-                text: 'Continue with Apple',
+              GestureDetector(
+                onTap: () =>
+                    ref.read(socialAuthProvider.notifier).googleSignIn(context),
+                child: const AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.google),
+                  text: 'Continue with Google',
+                ),
               ),
             ],
           ),

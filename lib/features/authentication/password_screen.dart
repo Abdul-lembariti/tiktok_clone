@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/birtday_screen.dart';
+import 'package:tiktok_clone/features/authentication/view_models/signup_viewmodel.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_btn.dart';
 
-class Password extends StatefulWidget {
+class Password extends ConsumerStatefulWidget {
   const Password({super.key});
 
   @override
-  State<Password> createState() => _PasswordState();
+  ConsumerState<Password> createState() => _PasswordState();
 }
 
-class _PasswordState extends State<Password> {
+class _PasswordState extends ConsumerState<Password> {
   final TextEditingController _passwordContoroller = TextEditingController();
   String _password = '';
   bool _obscureText = true;
@@ -45,6 +47,11 @@ class _PasswordState extends State<Password> {
 
   void _onSubmit() {
     if (!_isPasswordValid()) return;
+    final state = ref.read(signUpForm.notifier).state;
+    ref.read(signUpForm.notifier).state = {
+      ...state,
+      'password': _password,
+    };
     Navigator.push(
       context,
       MaterialPageRoute(

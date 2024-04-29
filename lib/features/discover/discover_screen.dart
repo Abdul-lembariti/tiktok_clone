@@ -110,7 +110,7 @@ class _DiscoveScreenState extends State<DiscoveScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: AspectRatio(
-                          aspectRatio: 9 / 16,
+                          aspectRatio: 9 / 15,
                           child: FadeInImage.assetNetwork(
                             fit: BoxFit.cover,
                             placeholder: 'assets/images/img.jpeg',
