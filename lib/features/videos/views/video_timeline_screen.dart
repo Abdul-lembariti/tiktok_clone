@@ -77,6 +77,29 @@ class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
               ),
             ),
           ),
+          /* data: (videos) {
+          _itemCount = videos.length;
+          return RefreshIndicator(
+            onRefresh: _onRefresh,
+            displacement: 50,
+            edgeOffset: 20,
+            color: Theme.of(context).primaryColor,
+            child: PageView.builder(
+              controller: _pageController,
+              scrollDirection: Axis.vertical,
+              onPageChanged: _onPage,
+              itemCount: videos.length,
+              itemBuilder: (context, index) {
+                final videoData = videos[index];
+                return VideoPost(
+                  onVideoFinished: _onVideoFinish,
+                  index: index,
+                  // videoData: videoData,
+                );
+              },
+            ),
+          );
+        } */
         );
   }
 }

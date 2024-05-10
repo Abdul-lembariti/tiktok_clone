@@ -126,4 +126,3 @@ class TikTokApp extends ConsumerWidget {
     );
   }
 }
-

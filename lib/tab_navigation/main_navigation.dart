@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/navigation.dart';
@@ -6,7 +7,7 @@ import 'package:tiktok_clone/common/widgets/tab_navigation/widgets/post_video_bu
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
-import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
+import 'package:tiktok_clone/features/inbox/views/inbox_screen.dart';
 import 'package:tiktok_clone/features/users/views/profile_screen.dart';
 import 'package:tiktok_clone/features/videos/views/video_recording_screen.dart';
 import 'package:tiktok_clone/features/videos/views/video_timeline_screen.dart';
@@ -84,8 +85,8 @@ class _MainNavigationState extends State<MainNavigation> {
       ),
       bottomNavigationBar: Container(
         color: Colors.black,
-        padding: const EdgeInsets.only(
-          bottom: Sizes.size32,
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.of(context).padding.bottom + Sizes.size12,
         ),
         child: Padding(
           padding: const EdgeInsets.all(
