@@ -21,6 +21,17 @@ class VideoModal {
     required this.createAt,
   });
 
+  VideoModal.fromJson(Map<String, dynamic> json):
+title=json['title'],
+filUrl=json['filUrl'],
+thumbUrl=json['thumbUrl'],
+description=json['description'],
+creator=json['creator'],
+creatorUid=json['creatorUid'],
+comments=json['comments'],
+likes=json['likes'],
+createAt=json['createAt'];
+
   Map<String, dynamic> toJson() {
     return {
       'title': title,

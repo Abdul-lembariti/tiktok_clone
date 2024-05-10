@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok_clone/common/widgets/video_config/video_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+
 import 'package:tiktok_clone/features/videos/repository/videoplayback_repository.dart';
 import 'package:tiktok_clone/features/videos/view_modal/playback_vm.dart';
 import 'package:tiktok_clone/firebase_options.dart';
@@ -48,7 +49,8 @@ class TikTokApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // S.load(const Locale('es'));
+    S.load(const Locale('es'));
+
     return MaterialApp.router(
       routerConfig: ref.watch(routerProvider),
       debugShowCheckedModeBanner: false,

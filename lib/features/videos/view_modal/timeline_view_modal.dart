@@ -2,25 +2,39 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok_clone/features/videos/models/video_modal.dart';
+import 'package:tiktok_clone/features/videos/repository/videorepo.dart';
 
 class TimelineViewModal extends AsyncNotifier<List<VideoModal>> {
+  late final VideosRepository _repository;
   List<VideoModal> _list = [];
 
-  void uploadVideo() async {
-    state = const AsyncValue.loading();
-    await Future.delayed(
-      const Duration(seconds: 2),
+  Future<List<VideoModal>> _fetchVideos({
+    int? lastItemCreatedAt,
+  }) async {
+    final result = await _repository.fetchVideos(
+      lastItemCreatedAt: lastItemCreatedAt,
     );
-    _list = [..._list];
-    state = AsyncValue.data(_list);
+    final videos = result.docs.map(
+      (doc) => VideoModal.fromJson(
+        doc.data(),
+      ),
+    );
+    return videos.toList();
   }
 
   @override
   FutureOr<List<VideoModal>> build() async {
-    await Future.delayed(
-      const Duration(seconds: 5),
-    );
+    _repository = ref.read(videoRepo);
+
+    _list = await _fetchVideos(lastItemCreatedAt: null);
     return _list;
+  }
+
+  fetchNextPage() async {
+    final nextPage = await _fetchVideos(
+      lastItemCreatedAt: _list.last.createAt,
+    );
+    state = AsyncValue.data([..._list, ...nextPage]);
   }
 }
 

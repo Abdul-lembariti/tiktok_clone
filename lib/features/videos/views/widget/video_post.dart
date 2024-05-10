@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/videos/models/video_modal.dart';
 import 'package:tiktok_clone/features/videos/view_modal/playback_vm.dart';
 import 'package:tiktok_clone/features/videos/views/widget/comments.dart';
 import 'package:tiktok_clone/features/videos/views/widget/video_btn.dart';
@@ -13,11 +14,13 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
+  final VideoModal videoData;
   final int index;
 
   const VideoPost({
     super.key,
     required this.onVideoFinished,
+    required this.videoData,
     required this.index,
   });
 
@@ -188,15 +191,15 @@ class VideoPostState extends ConsumerState<VideoPost>
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             bottom: 20,
             left: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '@nahul_01',
-                  style: TextStyle(
+                  '@${widget.videoData.creator}',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: Sizes.size20,
@@ -204,8 +207,8 @@ class VideoPostState extends ConsumerState<VideoPost>
                 ),
                 Gaps.v10,
                 Text(
-                  'Best industral cane make in town',
-                  style: TextStyle(
+                  widget.videoData.description,
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 )
@@ -217,15 +220,15 @@ class VideoPostState extends ConsumerState<VideoPost>
             bottom: 20,
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                    'https://i.pinimg.com/474x/84/2e/8b/842e8bf7bc9675a716628ac4e48f4904.jpg',
+                    'https://firebasestorage.googleapis.com/v0/b/derickdev.appspot.com/o/avatars%2F${widget.videoData.creatorUid}?alt=media&haha=${DateTime.now().toString()}',
                   ),
                   child: Text(
-                    'Nahul',
+                    widget.videoData.creator,
                   ),
                 ),
                 Gaps.v20,
