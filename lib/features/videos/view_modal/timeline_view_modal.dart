@@ -16,7 +16,8 @@ class TimelineViewModal extends AsyncNotifier<List<VideoModal>> {
     );
     final videos = result.docs.map(
       (doc) => VideoModal.fromJson(
-        doc.data(),
+        json: doc.data(),
+        videoId: doc.id,
       ),
     );
     return videos.toList();

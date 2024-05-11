@@ -32,6 +32,7 @@ class UploadVideoViewModel extends AsyncNotifier<void> {
         if (task.metadata != null) {
           final downloadUrl = await task.ref.getDownloadURL();
           final videoData = VideoModal(
+            id: '',
             title: 'Hello Flutter',
             filUrl: downloadUrl,
             thumbUrl: '',
