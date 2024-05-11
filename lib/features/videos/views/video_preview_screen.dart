@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gallery_saver/gallery_saver.dart';
-import 'package:tiktok_clone/features/videos/view_modal/timeline_view_modal.dart';
+
 import 'package:tiktok_clone/features/videos/view_modal/uploadvideo.dart';
 import 'package:video_player/video_player.dart';
 
